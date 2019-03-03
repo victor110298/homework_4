@@ -1,6 +1,6 @@
 package arrays;
 
-class MyLinkedList {
+class MyLinkedList implements MyList {
     public static MyLinkedList myLinkedList;
 
     private static int counter;
@@ -55,10 +55,7 @@ class MyLinkedList {
 
     }
 
-    public boolean remove(int index) {
-        if (index < 1 || index > size())
-            return false;
-
+    public Object remove(int index) {
         Node current = head;
         if (head != null) {
             for (int i = 0; i < index; i++) {

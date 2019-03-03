@@ -2,7 +2,7 @@ package arrays;
 
 import java.util.Arrays;
 
-public class MyArrayList {
+public class MyArrayList implements MyList {
     private Object[] myStore;
     private int actSize = 0;
 
@@ -85,7 +85,7 @@ public class MyArrayList {
         mal.add(new Integer(43));
         mal.add(new Integer(52));
         System.out.println("Element at Index 1: "+mal.get(1));
-        System.out.println("List size: "+mal.size());
+        System.out.println("MyList size: "+mal.size());
         System.out.println("Removing element at index 2: "+mal.remove(1));
         for(int i=0;i<mal.size();i++){
             System.out.print(mal.get(i)+" ");
