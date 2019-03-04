@@ -43,13 +43,11 @@ public class MyArrayList<T> implements MyList<T> {
         }
     }
 
-    public T clear() {
-        int index = 0;
-        Object obj = myStore[index];
-        for (int i = 0; i < actSize; i++){
+    public void clear() {
+        for (int i = 0; i < actSize; i++) {
             myStore[i] = null;
         }
-        return (T) obj;
+        actSize = 0;
     }
 
     public int size() {
@@ -84,3 +82,5 @@ public class MyArrayList<T> implements MyList<T> {
         }
     }
 }
+
+

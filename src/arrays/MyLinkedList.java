@@ -16,7 +16,11 @@ class MyLinkedList implements MyList {
             while (current.getNext() != null) {
                 current = current.getNext();
             }
+            while (current.getPrevious() != null) {
+                current = current.getPrevious();
+            }
             current.setNext(temp);
+            current.setPrevious(temp);
         }
         counter++;
     }
@@ -29,9 +33,14 @@ class MyLinkedList implements MyList {
             for (int i = 0; i < index && current.getNext() != null; i++) {
                 current = current.getNext();
             }
+            for (int i = 0; i < index && current.getPrevious() != null; i++) {
+                current = current.getPrevious();
+            }
         }
         temp.setNext(current.getNext());
         current.setNext(temp);
+        temp.setPrevious(current.getPrevious());
+        current.setPrevious(temp);
 
         counter++;
     }
@@ -42,11 +51,16 @@ class MyLinkedList implements MyList {
         Node current = null;
         if (head != null) {
             current = head.getNext();
+            current = head.getPrevious();
             for (int i = 0; i < index; i++) {
-                if (current.getNext() == null)
+                if (current.getNext() == null) {
                     return null;
-
+                }
+                if (current.getPrevious() == null) {
+                    return null;
+                }
                 current = current.getNext();
+
             }
             return current.getData();
         }
@@ -58,12 +72,17 @@ class MyLinkedList implements MyList {
         Node current = head;
         if (head != null) {
             for (int i = 0; i < index; i++) {
-                if (current.getNext() == null)
+                if (current.getNext() == null) {
                     return false;
+                }
+                else if (current.getPrevious() == null) {
+                    return false;
+                }
 
                 current = current.getNext();
             }
             current.setNext(current.getNext().getNext());
+            current.setPrevious(current.getPrevious().getPrevious());
 
             counter--;
             return true;
@@ -72,13 +91,16 @@ class MyLinkedList implements MyList {
         return false;
     }
 
-    public boolean clear(){
+    public boolean clear() {
         Node current = head;
         if (head != null) {
             for (int i = 0; i < counter; i++) {
-                if (current.getNext() == null)
-                    return false;
+                if (current.getNext() == null){
+                    return false;}
+                if (current.getPrevious() == null){
+                    return false;}
                 current.setNext(current.getNext().getNext());
+                current.setPrevious(current.getPrevious().getPrevious());
             }
             return true;
         }
@@ -112,7 +134,7 @@ class MyLinkedList implements MyList {
         public Node(Object dataValue) {
             next = null;
             data = dataValue;
-            previous=null;
+            previous = null;
         }
 
         public Node getPrevious() {
@@ -141,7 +163,7 @@ class MyLinkedList implements MyList {
     }
 
     public static void main(String[] args) {
-      MyLinkedList  myLinkedList = new MyLinkedList();
+        MyLinkedList myLinkedList = new MyLinkedList();
         myLinkedList.add("1");
         myLinkedList.add("2");
         myLinkedList.add("3");
@@ -159,3 +181,4 @@ class MyLinkedList implements MyList {
         System.out.println(myLinkedList);
     }
 }
+
