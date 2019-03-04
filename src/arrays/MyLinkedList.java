@@ -1,7 +1,6 @@
 package arrays;
 
 class MyLinkedList implements MyList {
-    public static MyLinkedList myLinkedList;
 
     private static int counter;
     private Node head;
@@ -107,16 +106,22 @@ class MyLinkedList implements MyList {
 
     private class Node {
         Node next;
+        Node previous;
         Object data;
 
         public Node(Object dataValue) {
             next = null;
             data = dataValue;
+            previous=null;
         }
-//        public Node(Object dataValue, Node nextValue) {
-//            next = nextValue;
-//            data = dataValue;
-//        }
+
+        public Node getPrevious() {
+            return previous;
+        }
+
+        public void setPrevious(Node previous) {
+            this.previous = previous;
+        }
 
         public Object getData() {
             return data;
@@ -136,7 +141,7 @@ class MyLinkedList implements MyList {
     }
 
     public static void main(String[] args) {
-        myLinkedList = new MyLinkedList();
+      MyLinkedList  myLinkedList = new MyLinkedList();
         myLinkedList.add("1");
         myLinkedList.add("2");
         myLinkedList.add("3");

@@ -2,17 +2,18 @@ package arrays;
 
 import java.util.Arrays;
 
-public class MyArrayList implements MyList {
+public class MyArrayList<T> implements MyList<T> {
     private Object[] myStore;
     private int actSize = 0;
+    private static final int VAR = 10;
 
     public MyArrayList() {
-        myStore = new Object[10];
+        myStore = new Object[VAR];
     }
 
-    public Object get(int index) {
-        if (index < actSize) {
-            return myStore[index];
+    public T get(int index) {
+        if (index < 0 || index < actSize) {
+            return (T) myStore[index];
         } else {
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -25,9 +26,9 @@ public class MyArrayList implements MyList {
         myStore[actSize++] = obj;
     }
 
-    public Object remove(int index) {
-        if (index < actSize) {
-            Object obj = myStore[index];
+    public T remove(int index) {
+        if (index<0 || index < actSize) {
+            T t= (T) myStore[index];
             myStore[index] = null;
             int tmp = index;
             while (tmp < actSize) {
@@ -36,28 +37,19 @@ public class MyArrayList implements MyList {
                 tmp++;
             }
             actSize--;
-            return obj;
+            return t;
         } else {
             throw new ArrayIndexOutOfBoundsException();
         }
     }
 
-    public Object clear() {
+    public T clear() {
         int index = 0;
         Object obj = myStore[index];
-        while (index < actSize) {
-            if (index < actSize) {
-                myStore[index] = null;
-                int tmp = index;
-                while (tmp < actSize) {
-                    myStore[tmp] = myStore[tmp + 1];
-                    myStore[tmp + 1] = null;
-                    tmp++;
-                }
-                actSize--;
-            }
+        for (int i = 0; i < actSize; i++){
+            myStore[i] = null;
         }
-        return obj;
+        return (T) obj;
     }
 
     public int size() {
@@ -84,11 +76,11 @@ public class MyArrayList implements MyList {
         mal.add(new Integer(29));
         mal.add(new Integer(43));
         mal.add(new Integer(52));
-        System.out.println("Element at Index 1: "+mal.get(1));
-        System.out.println("MyList size: "+mal.size());
-        System.out.println("Removing element at index 2: "+mal.remove(1));
-        for(int i=0;i<mal.size();i++){
-            System.out.print(mal.get(i)+" ");
+        System.out.println("Element at Index 1: " + mal.get(1));
+        System.out.println("MyList size: " + mal.size());
+        System.out.println("Removing element at index 2: " + mal.remove(1));
+        for (int i = 0; i < mal.size(); i++) {
+            System.out.print(mal.get(i) + " ");
         }
     }
 }
