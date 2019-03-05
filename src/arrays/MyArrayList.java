@@ -5,10 +5,10 @@ import java.util.Arrays;
 public class MyArrayList<T> implements MyList<T> {
     private Object[] myStore;
     private int actSize = 0;
-    private static final int VAR = 10;
+    private static final int DEFAUlT_CAPACITY = 10;
 
     public MyArrayList() {
-        myStore = new Object[VAR];
+        myStore = new Object[DEFAUlT_CAPACITY];
     }
 
     public T get(int index) {
@@ -56,7 +56,6 @@ public class MyArrayList<T> implements MyList<T> {
 
     private void increaseListSize() {
         myStore = Arrays.copyOf(myStore, myStore.length * 2);
-        System.out.println("\nNew length: " + myStore.length);
     }
 
     public static void main(String a[]) {
@@ -69,7 +68,7 @@ public class MyArrayList<T> implements MyList<T> {
         for (int i = 0; i < mal.size(); i++) {
             System.out.print(mal.get(i) + " ");
         }
-        System.out.println("\n My Array after clear");
+        System.out.println("\nMy Array after clear");
         mal.clear();
         mal.add(new Integer(29));
         mal.add(new Integer(43));
