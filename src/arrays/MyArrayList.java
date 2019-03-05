@@ -12,7 +12,7 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     public T get(int index) {
-        if (index < 0 || index < actSize) {
+        if (index > 0 || index < actSize) {
             return (T) myStore[index];
         } else {
             throw new ArrayIndexOutOfBoundsException();
